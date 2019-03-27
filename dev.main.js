@@ -4,73 +4,111 @@ const logger = require('./src/index.js');
 
 // [ hash ]
 
-// ['sha1','sha256','sha384','sha512','md5'].map((func)=>{
-//   console.json({ func, funcRes: console.hash[ func ]( func, 'Hello world' ) });
+// const sha1 = console.hash.sha1('Hello world');
+// const sha256 = console.hash.sha256('Hello world');
+// const sha384 = console.hash.sha384('Hello world');
+// const sha512 = console.hash.sha512('Hello world');
+// const md5 = console.hash.md5('Hello world');
+
+// console.json({
+//   sha1, sha256, sha384, sha512, md5
 // });
+
+// const sha1File = console.hash.sha1File('./src/index.js');
+// const sha256File = console.hash.sha256File('./src/index.js');
+// const sha384File = console.hash.sha384File('./src/index.js');
+// const sha512File = console.hash.sha512File('./src/index.js');
+// const md5File = console.hash.md5File('./src/index.js');
+
+// console.json({
+//   sha1File, sha256File, sha384File, sha512File, md5File
+// });
+
+// const testObject = {
+//   name: 'Tom',
+//   age: 123,
+//   myArr: [0,0,0,0,0],
+//   myObj: { A:{ B:{ C:{} } } },
+// };
+
+// console.json( testObject, true, 2, false ); // format, 2, not-line-by-line
+// console.json( testObject, true, 4 );
+
+
+// console.json( testObject, true, 2, false);
+
+// console.json(, true, 2, false);
+
+
 
 // [ shell ]
 // console.log( console.shell.sync('ls ./*.js') );
 
 // [ fs ]
-const relPath = './test.json';
-const absPath = console.getAbsPath( relPath );
-const file = console.readFileSync( relPath );
-const json_t = console.jsonFromFile('./test.json');
+// const absPath    = console.getAbsPath( './test.json' );
+// const file       = console.readFileSync( './test.json' );
+// const json_t     = console.jsonFromFile('./test.json');
+// const randInt    = console.randInt( 0, 1000 );
+// const randFloat  = console.randFloat( 0, 1000 );
+// const hostname   = console.getHostname();
+// const isFile     = console.isFile('./test.json');
+// const isDir      = console.isDir('./test.json');
+// const listDir    = console.listDir('./');
 
-// console.json({ relPath, absPath, json_t, file:'file' });
+// console.json({
+//   absPath, file:'[*file-content*]', json_t, randInt, randFloat, hostname, isFile, isDir, listDir
+// }, true, 4);
+
 
 // console.printObjectTree({ json_t });
 
-const randInt = console.randInt(0,1000);
-const randFloat = console.randFloat(0,1000);
-const hostname = console.getHostname();
 // console.json({ randInt, randFloat, hostname });
 
-const fileInfo = console.getFileInfo( relPath );
-// console.json({ fileInfo });
+const fileInfo = console.getFileInfo( './src/index.js' );
+console.json({ fileInfo });
 
-const listDir = console.listDir('./');
-// console.json({ list: listDir });
+// const listDir = console.listDir('./');
+// // console.json({ list: listDir });
 
-let hashAllFiles = [];
+// let hashAllFiles = [];
 
-listDir.map((file)=>{
+// listDir.map((file)=>{
 
-  const isDir = console.isDir( file );
-  const isFile = console.isFile( file );
+//   const isDir = console.isDir( file );
+//   const isFile = console.isFile( file );
 
-  let obj = {
-    file, isDir, isFile, hash: null, 
-  };
+//   let obj = {
+//     file, isDir, isFile, hash: null, 
+//   };
 
-  if( isFile ){
-    obj.hash = console.hash.sha256File( file )
-    // obj.hash = console.hash.sha1File( file )
-    // obj.hash = console.hash.sha384File( file )
-    // obj.hash = console.hash.sha512File( file )
-    // obj.hash = console.hash.md5File( file )
-  }
+//   if( isFile ){
+//     obj.hash = console.hash.sha256File( file )
+//     // obj.hash = console.hash.sha1File( file )
+//     // obj.hash = console.hash.sha384File( file )
+//     // obj.hash = console.hash.sha512File( file )
+//     // obj.hash = console.hash.md5File( file )
+//   }
 
-  hashAllFiles.push(obj);
+//   hashAllFiles.push(obj);
 
-});
+// });
 
 // console.json({hashAllFiles});
 
 
-console.line({line: true});
-console.log({log: true});
-console.info({info: true});
-console.info2({info2: true});
-console.ok({ok: true});
-console.warn({warn: true});
-console.error({error: true});
-console.debug({debug: true});
-console.nocol({nocol: true});
-console.p({p: true});
-console.watch({watch: true});
-console.force({force: true});
-console.json({json: true});
+// console.line({line: true});
+// console.log({log: true});
+// console.info({info: true});
+// console.info2({info2: true});
+// console.ok({ok: true});
+// console.warn({warn: true});
+// console.error({error: true});
+// console.debug({debug: true});
+// console.nocol({nocol: true});
+// console.p({p: true});
+// console.watch({watch: true});
+// console.force({force: true});
+// console.json({json: true});
 
 // let red = console.R(' red ');
 // let green = console.G(' green ');
