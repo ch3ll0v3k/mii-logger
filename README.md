@@ -1,6 +1,4 @@
-[![Mii-js Logo](https://raw.githubusercontent.com/ch3ll0v3k/Mii/master/src/demo-site/public_html/mii-js.logo.png)](https://www.npmjs.com/package/mii-js)
-
-#### mii-logger.js is NodeJs Simple logger 
+### mii-logger.js is NodeJs Simple logger 
 
 [![npm version](https://badge.fury.io/js/mii-logger.js.svg)](https://badge.fury.io/js/mii-logger.js)
 
