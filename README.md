@@ -1,5 +1,8 @@
-#### mi-logger.js is NodeJs Simple logger 
+[![Mii-js Logo](https://raw.githubusercontent.com/ch3ll0v3k/Mii/master/src/demo-site/public_html/mii-js.logo.png)](https://www.npmjs.com/package/mii-js)
 
+#### mii-logger.js is NodeJs Simple logger 
+
+[![npm version](https://badge.fury.io/js/mii-logger.js.svg)](https://badge.fury.io/js/mii-logger.js)
 
 ##### Install:
 
@@ -23,6 +26,9 @@ npm i mii-logger.js --save
 // console.unMute();
 ```
 
+[![mute-unmute](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/mute-unmute.png)]
+
+-----------------------------------------------------------------------
 
 ##### Main console print functions:
 ```javascript
@@ -43,6 +49,10 @@ console.json({json: true});
 
 ```
 
+[![print-all](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/print-all.png)]
+
+-----------------------------------------------------------------------
+
 ```javascript
 
 console.log( new Error('Automatic detected Error Object with stack-trace') );
@@ -62,6 +72,9 @@ console.log( new Error('Automatic detected Error Object with stack-trace') );
 
 ```
 
+[![detected-errro](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/detected-errro.png)]
+
+-----------------------------------------------------------------------
 
 ```javascript
 console.log( console.R(' Каждый — красный ') );
@@ -82,4 +95,5 @@ console.log( console.P(' Vain — violet ') );
 
 ```
 
+-----------------------------------------------------------------------
 
