@@ -8,10 +8,10 @@
 npm i mii-logger.js --save
 ```
 
-##### mute and unmute all console output:
+##### Just require it
 
 ```javascript
-// Just require it
+// 
 const mLogger = require('mii-logger.js');
 
 ```
@@ -41,20 +41,20 @@ console.json({json: true});
 
 -----------------------------------------------------------------------
 
-##### mute and unmute all console output:
+##### mute and unMute all console output:
 
 ```javascript
-console.mute();
+console.mute(); // Mute all output
 
-console.log(' this will not be printed');
-console.log(' this will not be printed');
+console.log(' this line will not be printed');
+console.log(' this line will not be printed');
 
 console.force(' Forced to print ');
 
-console.log(' this will not be printed');
-console.log(' this will not be printed');
+console.log(' this line will not be printed');
+console.log(' this line will not be printed');
 
-console.unMute();
+console.unMute(); // unMute all output
 ```
 
 [![mute-unmute](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/mute-unmute.png)]
