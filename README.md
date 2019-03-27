@@ -11,17 +11,17 @@ npm i mii-logger.js --save
 ##### mute and unmute all console output:
 
 ```javascript
-// console.mute();
+console.mute();
 
-// console.log(' this will not be printed');
-// console.log(' this will not be printed');
+console.log(' this will not be printed');
+console.log(' this will not be printed');
 
-// console.force(' Forced to print ');
+console.force(' Forced to print ');
 
-// console.log(' this will not be printed');
-// console.log(' this will not be printed');
+console.log(' this will not be printed');
+console.log(' this will not be printed');
 
-// console.unMute();
+console.unMute();
 ```
 
 [![mute-unmute](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/mute-unmute.png)]
@@ -92,6 +92,8 @@ console.log( console.B(' In — indigo ') );
 console.log( console.P(' Vain — violet ') );
 
 ```
+
+[![detected-errro](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/rainbow.png)]
 
 -----------------------------------------------------------------------
 
