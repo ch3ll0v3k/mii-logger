@@ -2,13 +2,13 @@
 
 [![npm version](https://badge.fury.io/js/mii-logger.js.svg)](https://badge.fury.io/js/mii-logger.js)
 
-##### Install:
+#### Install:
 
 ```bash
 npm i mii-logger.js --save
 ```
 
-##### Just require it
+#### Just require it
 
 ```javascript
 // 
@@ -18,7 +18,7 @@ const mLogger = require('mii-logger.js');
 
 -----------------------------------------------------------------------
 
-##### Main console print functions:
+#### Main console print functions:
 ```javascript
 
 console.line({line: true});
@@ -41,7 +41,7 @@ console.json({json: true});
 
 -----------------------------------------------------------------------
 
-##### mute and unMute all console output:
+#### mute and unMute all console output:
 
 ```javascript
 console.mute(); // Mute all output
@@ -108,7 +108,7 @@ console.log( console.P(' Vain — violet ') );
 -----------------------------------------------------------------------
 ### Build-In Tools:
 
-##### printing JSON;
+#### printing JSON;
 
 ```javascript
 const testObject = {
@@ -163,7 +163,7 @@ console.json( testObject, true, 2, false ); // format, 2, not-line-by-line
 ```
 -----------------------------------------------------------------------
 
-##### Hash text && files
+#### Hash text && files
 
 ```javascript
 
