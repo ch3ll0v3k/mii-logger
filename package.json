@@ -1,8 +1,8 @@
 {
   "name": "mii-logger.js",
-  "version": "1.1.56",
+  "version": "1.1.57",
   "description": "mii-logger: Simple nodejs console logger",
-  "main": "mii-logger.dev.js",
+  "main": "init-mii-logger.js",
   "scripts": {
     "test": "node ./dev.main.js",
     "deploy": "node ./deploy.js"
