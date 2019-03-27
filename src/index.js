@@ -34,26 +34,51 @@ let l_blue2 = "\033[00;36m";
 let l_white = "\033[00;37m";
 let l_endl = "\033[0m";
 
+// NO_COLOUR="\[\033[0m\]"
+// LIGHT_WHITE="\[\033[1;37m\]"
+// WHITE="\[\033[0;37m\]"
+// GRAY="\[\033[1;30m\]"
+// BLACK="\[\033[0;30m\]"
+
+// RED="\[\033[0;31m\]"
+// LIGHT_RED="\[\033[1;31m\]"
+// GREEN="\[\033[0;32m\]"
+// LIGHT_GREEN="\[\033[1;32m\]"
+// YELLOW="\[\033[0;33m\]"
+// LIGHT_YELLOW="\[\033[1;33m\]"
+// BLUE="\[\033[0;34m\]"
+// LIGHT_BLUE="\[\033[1;34m\]"
+// MAGENTA="\[\033[0;35m\]"
+// LIGHT_MAGENTA="\[\033[1;35m\]"
+// CYAN="\[\033[0;36m\]"
+// LIGHT_CYAN="\[\033[1;36m\]"
+
 function R( data ){ return red +data +endl; }
 function G( data ){ return green +data +endl; }
 function B( data ){ return blue +data +endl; }
 function Y( data ){ return yellow +data +endl; }
 function P( data ){ return purple +data +endl; }
 function W( data ){ return white +data +endl; }
+function LR( data ){ return l_red +data +endl; }
+function LG( data ){ return l_green +data +endl; }
+function LB( data ){ return l_blue +data +endl; }
+function LY( data ){ return l_yellow +data +endl; }
+function LP( data ){ return l_purple +data +endl; }
+function LW( data ){ return l_white +data +endl; }
 
-module.exports.R = R;
-module.exports.G = G;
-module.exports.B = B;
-module.exports.Y = Y;
-module.exports.P = P;
-module.exports.W = W;
+module.exports.R = R; module.exports.LR = LR;
+module.exports.G = G; module.exports.LG = LG;
+module.exports.B = B; module.exports.LB = LB;
+module.exports.Y = Y; module.exports.LY = LY;
+module.exports.P = P; module.exports.LP = LP;
+module.exports.W = W; module.exports.LW = LW;
 
-console.R = R;
-console.G = G;
-console.B = B;
-console.Y = Y;
-console.P = P;
-console.W = W;
+console.R = R; console.LR = LR;
+console.G = G; console.LG = LG;
+console.B = B; console.LB = LB;
+console.Y = Y; console.LY = LY;
+console.P = P; console.LP = LP;
+console.W = W; console.LW = LW;
 
 // console.log( console.R('RED')+' => '+console.G('GREEN')+' => '+console.B('BLUE') );
 
@@ -389,13 +414,29 @@ console.listDir = function( path ){
   return console.readDir( path );
 }
 
+console.writeFileSync = function( path, data, encoding='utf-8' ){
+
+  try{ 
+
+    while( path.replace(/\/\//gi,'/') != path )
+      path = path.replace(/\/\//gi,'/');
+    return _fs.writeFileSync( path, data, encoding );
+
+  }catch( e ){
+    console.error(' console.readFileSync: ['+path+'] Exception: '+e.message);
+    return false;
+  }
+
+};
+
 console.readFileSync = function( path, encoding='utf-8' ){
 
   try{ 
 
     while( path.replace(/\/\//gi,'/') != path )
       path = path.replace(/\/\//gi,'/');
-    return _fs.readFileSync( console.getAbsPath( path ), encoding );
+    // return _fs.readFileSync( console.getAbsPath( path ), encoding );
+    return _fs.readFileSync( path, encoding );
 
   }catch( e ){
     console.error(' console.readFileSync: ['+path+'] Exception: '+e.message);
@@ -408,6 +449,18 @@ console.jsonFromFile = function( path){
 
   try{ 
     return JSON.parse( console.readFileSync( path ) );
+  }catch( e ){
+    console.error(' console.jsonFromFile: ['+path+'] Exception: '+e.message);
+    return false;
+  }
+
+};
+
+console.jsonToFile = function( path, mObj, format=false, indent=2 ){
+
+  try{ 
+    mObj = typeof mObj === "object" ? (format ? JSON.stringify(mObj, null, indent) : JSON.stringify(mObj)) : mObj;
+    console.writeFileSync( path, mObj );
   }catch( e ){
     console.error(' console.jsonFromFile: ['+path+'] Exception: '+e.message);
     return false;
@@ -469,7 +522,9 @@ console.shell = {
   sync: function( cmd, options={} ){
     try{
       const defOptions = {}; // {stdio:[0,1,2]};
-      return (''+_chi.execSync( cmd, defOptions ));
+      const res = (''+_chi.execSync( cmd, defOptions ));
+      // console.log({shell: res});
+      return res;
     }catch(e){
       console.error(' Shell.sync Exception: '+e.message);
       return false;

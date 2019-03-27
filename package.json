@@ -1,20 +1,27 @@
 {
   "name": "mii-logger.js",
-  "version": "1.1.35",
+  "version": "1.1.51",
   "description": "mii-logger: Simple nodejs console logger",
   "main": "mii-logger.dev.js",
   "scripts": {
-    "test": "node ./dev.main.js"
+    "test": "node ./dev.main.js",
+    "deploy": "node ./deploy.js"
   },
   "engines": {
     "node": ">=8.0.0"
   },
-  "keywords": ["mii-logger", "nodejs logger", "logger"],
+  "keywords": [
+    "mii-logger",
+    "nodejs logger",
+    "logger"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ch3ll0v3k/mii-logger.git"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "author": "https://github.com/ch3ll0v3k",
   "license": "MIT",
   "dependencies": {
