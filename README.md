@@ -124,24 +124,20 @@ const testObject = {
 
 console.json( testObject ); // prints as formated json, line-by-line: (defaullt: true);
 
-// [12:31:42][L] : {
-// [12:31:42][L] :   "name": "Tom",
-// [12:31:42][L] :   "age": 123,
-// [12:31:42][L] :   "myArr": [
-// [12:31:42][L] :     0,
-// [12:31:42][L] :     0,
-// [12:31:42][L] :     0,
-// [12:31:42][L] :     0,
-// [12:31:42][L] :     0
-// [12:31:42][L] :   ],
-// [12:31:42][L] :   "myObj": {
-// [12:31:42][L] :     "A": {
-// [12:31:42][L] :       "B": {
-// [12:31:42][L] :         "C": {}
-// [12:31:42][L] :       }
-// [12:31:42][L] :     }
-// [12:31:42][L] :   }
-// [12:31:42][L] : }
+{
+  "name": "Tom",
+  "age": 123,
+  "myArr": [
+    0, 0, 0, 0, 0
+  ],
+  "myObj": {
+    "A": {
+      "B": {
+        "C": {}
+      }
+    }
+  }
+}
 
 console.json( testObject, false ); // no-format
 
@@ -153,11 +149,7 @@ console.json( testObject, true, 2, false ); // format, 2, not-line-by-line
   "name": "Tom",
   "age": 123,
   "myArr": [
-    0,
-    0,
-    0,
-    0,
-    0
+    0, 0, 0, 0, 0
   ],
   "myObj": {
     "A": {
