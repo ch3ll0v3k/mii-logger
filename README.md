@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/mii-logger.js.svg)](https://badge.fury.io/js/mii-logger.js)
 
-#### Install:
+### Install:
 
 ```bash
 npm i mii-logger.js --save
