@@ -8,7 +8,7 @@
 npm i mii-logger.js --save
 ```
 
-#### Just require it
+### Just require it
 
 ```javascript
 // 
@@ -18,7 +18,7 @@ const mLogger = require('mii-logger.js');
 
 -----------------------------------------------------------------------
 
-#### Main console print functions:
+### Main console print functions:
 ```javascript
 
 console.line({line: true});
@@ -41,7 +41,7 @@ console.json({json: true});
 
 -----------------------------------------------------------------------
 
-#### mute and unMute all console output:
+### mute and unMute all console output:
 
 ```javascript
 console.mute(); // Mute all output
@@ -106,9 +106,9 @@ console.log( console.P(' Vain — violet ') );
 [![detected-errro](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/rainbow.png)]
 
 -----------------------------------------------------------------------
-### Build-In Tools:
+## Build-In Tools:
 
-#### printing JSON;
+### printing JSON;
 
 ```javascript
 const testObject = {
@@ -163,7 +163,7 @@ console.json( testObject, true, 2, false ); // format, 2, not-line-by-line
 ```
 -----------------------------------------------------------------------
 
-#### Hash text && files
+### Hash text && files
 
 ```javascript
 
@@ -214,7 +214,7 @@ console.json({
 
 -----------------------------------------------------------------------
 
-#### Other
+### Other
 
 ```javascript
 const absPath    = console.getAbsPath( './test.json' );
@@ -277,7 +277,7 @@ console.json({
 
 -----------------------------------------------------------------------
 
-#### Get File-System [file/dir] info object 
+### Get File-System [file/dir] info object 
 
 ```javascript
 
@@ -310,4 +310,40 @@ console.json({ fileInfo });
 ```
 
 [![fileInfo](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/fileInfo.png)]
+
+
+
+-----------------------------------------------------------------------
+
+### Reading and saving JSON and raw file
+
+#### READ/WRITE Json
+
+```javascript
+
+  // READ Json
+  const json_t = console.jsonFromFile( 'my-file.json' );
+
+  // WRITE Json
+  console.jsonToFile( 'my-file.json', {myKey: 'myVal'} );
+
+  // optional
+  console.jsonToFile( 'my-file.json', {myKey: 'myVal'}, format=true, indent=2 );
+
+```
+
+#### READ/WRITE File
+
+```javascript
+
+  // READ File
+  const file = console.readFileSync( 'my-file.txt' );
+
+  // WRITE File
+  console.writeFileSync( 'my-file.txt', 'some text data or json' );
+
+  // optional
+  console.writeFileSync( 'my-file.txt', 'some text data or json', encoding='utf-8' );
+
+```
 
