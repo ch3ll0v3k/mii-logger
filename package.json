@@ -1,6 +1,6 @@
 {
   "name": "mii-logger.js",
-  "version": "1.1.65",
+  "version": "1.1.66",
   "description": "mii-logger: Simple nodejs console logger",
   "main": "init-mii-logger.js",
   "scripts": {

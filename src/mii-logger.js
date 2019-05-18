@@ -589,8 +589,10 @@ console.sleep = async( msec )=>{
   });
 }
 
-console.TS = (lable)=>{ lables[ lable ] = Date.now(); return lables[ lable ]; }
-console.TE = (lable)=>{ const res = Date.now() - lables[ lable ]; delete lables[ lable ];  return res; }
+const timers_t = {};
+
+console.TS = (lable)=>{ timers_t[ lable ] = Date.now(); return timers_t[ lable ]; }
+console.TE = (lable)=>{ const res = Date.now() - timers_t[ lable ]; delete timers_t[ lable ];  return res; }
 console.F = (val)=>{ return ((+val).toFixed(5)); };
 
 // --------------------------------------------------------------------
