@@ -589,6 +589,10 @@ console.sleep = async( msec )=>{
   });
 }
 
+console.TS = (lable)=>{ lables[ lable ] = Date.now(); return lables[ lable ]; }
+console.TE = (lable)=>{ const res = Date.now() - lables[ lable ]; delete lables[ lable ];  return res; }
+console.F = (val)=>{ return ((+val).toFixed(5)); };
+
 // --------------------------------------------------------------------
 module.exports = {
   log : console_log,
