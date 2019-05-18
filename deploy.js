@@ -1,6 +1,6 @@
 // npm version <update_type>
 
-const logger = require('./src/index.js');
+const logger = require('./src/mii-logger.js');
 
 const package = console.jsonFromFile( './package.json' )
 const new_version = package.version.split('.').map(( v, index, data )=>{

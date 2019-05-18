@@ -547,6 +547,48 @@ console.shell = {
   },
 }
 
+console.createDir = ( path, mode ) => {
+
+  try{ 
+
+    return console.shell.sync(' mkdir -p '+console.getAbsPath(path) );
+
+  }catch( e ){
+    console.error(' Shell.sync Exception: '+e.message);
+    return false;
+  }
+
+};
+
+
+// --------------------------------------------------------------------
+// console argv
+
+console.getArg = ( name ) => {
+
+  const argv = process.argv; // .slice(2);
+  const index = argv.indexOf( name.trim() );
+  if( index !== -1 && argv[ index +1 ] ){
+    return (argv[ index +1 ]).trim();
+  }
+  return null
+
+}
+
+// --------------------------------------------------------------------
+console.sleep = async( msec )=>{
+  return new Promise( async(resolve, reject)=>{
+    try{
+      const timeout_t = setTimeout(async()=>{
+        resolve(true);
+      }, msec);
+    }catch(e){
+      console.error(' console.sleep: '+e.message);
+      resolve(true);
+    }
+  });
+}
+
 // --------------------------------------------------------------------
 module.exports = {
   log : console_log,
