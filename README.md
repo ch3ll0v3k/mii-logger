@@ -347,3 +347,15 @@ console.json({ fileInfo });
 
 ```
 
+#### Extra tools
+
+```javascript
+
+(async ()=>{
+
+  await console.sleep( 2000 ); // wait 2.0sec
+
+})();
+
+```
+
