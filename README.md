@@ -362,16 +362,19 @@ console.json({ fileInfo });
 
 ```javascript
 
-
 (async ()=>{
 
   // Start chronometer
   console.TS('my-custom-timer-tag');
 
+  // Non-blocking sleep
   await console.sleep(2000);
 
+  // End chronometer && get result
+  const mSec = console.TE('my-custom-timer-tag');
+
   console.json({
-    'execution-duration': console.TE('my-custom-timer-tag')
+    'execution-duration': \`${mSec} mSec\`
   });
 
 })();
