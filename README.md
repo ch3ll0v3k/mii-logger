@@ -374,7 +374,7 @@ console.json({ fileInfo });
   const mSec = console.TE('my-custom-timer-tag');
 
   console.json({
-    'execution-duration': \`${mSec} mSec\`
+    'execution-duration': `${mSec} mSec`
   });
 
 })();
