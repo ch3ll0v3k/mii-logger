@@ -21,19 +21,20 @@ const mLogger = require('mii-logger.js');
 ### Main console print functions:
 ```javascript
 
-console.line({line: true});
-console.log({log: true});
-console.info({info: true});
-console.info2({info2: true});
-console.ok({ok: true});
-console.warn({warn: true});
-console.error({error: true});
-console.debug({debug: true});
-console.nocol({nocol: true});
-console.p({p: true});
-console.watch({watch: true});
-console.force({force: true});
-console.json({json: true});
+console.line();
+console.log( ' #console.log' );
+console.info( ' #console.info' );
+console.info2( ' #console.info2' );
+console.ok( ' #console.ok' );
+console.warn( ' #console.warn' );
+console.error( ' #console.error' );
+console.debug( ' #console.debug' );
+console.nocol( ' #console.nocol' );
+console.p( ' #console.p' );
+console.watch( ' #console.watch' );
+console.force( ' #console.force' );
+console.json( {key: '#console.json'} );
+
 
 ```
 
