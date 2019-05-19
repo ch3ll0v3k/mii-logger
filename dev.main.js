@@ -1,4 +1,4 @@
-const logger = require('./src/index.js');
+const logger = require('./src/mii-logger.js');
 
 // console.mute();
 
@@ -14,11 +14,11 @@ const logger = require('./src/index.js');
 //   sha1, sha256, sha384, sha512, md5
 // });
 
-// const sha1File = console.hash.sha1File('./src/index.js');
-// const sha256File = console.hash.sha256File('./src/index.js');
-// const sha384File = console.hash.sha384File('./src/index.js');
-// const sha512File = console.hash.sha512File('./src/index.js');
-// const md5File = console.hash.md5File('./src/index.js');
+// const sha1File = console.hash.sha1File('./src/mii-logger.js');
+// const sha256File = console.hash.sha256File('./src/mii-logger.js');
+// const sha384File = console.hash.sha384File('./src/mii-logger.js');
+// const sha512File = console.hash.sha512File('./src/mii-logger.js');
+// const md5File = console.hash.md5File('./src/mii-logger.js');
 
 // console.json({
 //   sha1File, sha256File, sha384File, sha512File, md5File
@@ -64,8 +64,8 @@ const logger = require('./src/index.js');
 
 // console.json({ randInt, randFloat, hostname });
 
-const fileInfo = console.getFileInfo( './src/index.js' );
-console.json({ fileInfo });
+// const fileInfo = console.getFileInfo( './src/mii-logger.js' );
+// console.json({ fileInfo });
 
 // const listDir = console.listDir('./');
 // // console.json({ list: listDir });
@@ -145,3 +145,40 @@ console.json({ fileInfo });
 // console.log( console.LB(' Battle — blue ') );
 // console.log( console.B(' In — indigo ') );
 // console.log( console.P(' Vain — violet ') );
+
+
+
+(async ()=>{
+
+  // Start chronometer
+  console.TS('my-custom-timer-tag');
+
+  // Non-blocking sleep
+  await console.sleep(2000);
+
+  // End chronometer && get result
+  const mSec = console.TE('my-custom-timer-tag');
+
+  console.json({
+    'execution-duration': `${mSec} mSec`
+  });
+
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

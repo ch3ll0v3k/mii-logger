@@ -359,3 +359,23 @@ console.json({ fileInfo });
 
 ```
 
+```javascript
+
+
+(async ()=>{
+
+  // Start chronometer
+  console.TS('my-custom-timer-tag');
+
+  await console.sleep(2000);
+
+  console.json({
+    'execution-duration': console.TE('my-custom-timer-tag')
+  });
+
+})();
+
+```
+
+[![detected-errro](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/execution-duration.png)]
+
