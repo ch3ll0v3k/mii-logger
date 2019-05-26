@@ -557,8 +557,25 @@ console.createDir = ( path, mode ) => {
   }
 };
 
-console.beep = () => {
-  process.stdout.write('\x07');
+// --------------------------------------------------------------------
+console.sleep = async( msec )=>{
+  return new Promise( async(resolve, reject)=>{
+    try{
+      const timeout_t = setTimeout(async()=>{
+        resolve(true);
+      }, msec);
+    }catch(e){
+      console.error(' console.sleep: '+e.message);
+      resolve(true);
+    }
+  });
+}
+
+console.beep = ( times=1, delay=200 ) => {
+  for( let i=0; i<times; i++ ){
+    process.stdout.write('\x07');
+    console.sleep( delay );
+  }
 }
 
 // --------------------------------------------------------------------
@@ -573,20 +590,6 @@ console.getArg = ( name ) => {
   }
   return null
 
-}
-
-// --------------------------------------------------------------------
-console.sleep = async( msec )=>{
-  return new Promise( async(resolve, reject)=>{
-    try{
-      const timeout_t = setTimeout(async()=>{
-        resolve(true);
-      }, msec);
-    }catch(e){
-      console.error(' console.sleep: '+e.message);
-      resolve(true);
-    }
-  });
 }
 
 const timers_t = {};
