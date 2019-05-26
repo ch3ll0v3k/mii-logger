@@ -549,18 +549,17 @@ console.shell = {
 }
 
 console.createDir = ( path, mode ) => {
-
   try{ 
-
     return console.shell.sync(' mkdir -p '+console.getAbsPath(path) );
-
   }catch( e ){
     console.error(' Shell.sync Exception: '+e.message);
     return false;
   }
-
 };
 
+console.beep = () => {
+  process.stdout.write('\x07');
+}
 
 // --------------------------------------------------------------------
 // console argv
