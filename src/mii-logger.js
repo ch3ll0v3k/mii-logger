@@ -530,20 +530,21 @@ console.shell = {
       return false;
     }
   },
-  async: function( cmd ){
-    try{
-      _chi.exec( cmd, function(error, stdout, stderr){
-        if( !error ){
-          cb( {code: 200, msg:'OK', data: stdout, stderr: stderr } );
-          return;
-        }
-        cb( {code: 500, msg:error, stdout:stdout, stderr: stderr } );
-      });
-    }catch(e){
-      console.error(' Shell.async Exception: '+e.message);
-        cb( {code: 500, msg:e.message, stdout:null, stderr: null } );
-      return false;
-    }
+  async: async ( cmd )=>{
+    return new Promise( async(resolve, reject)=>{   
+      try{
+        _chi.exec( cmd, (error, stdout, stderr)=>{
+          if( !error ){
+            resolve( {code: 200, msg:'OK', data: stdout, stderr } );
+            return;
+          }
+          resolve( {code: 500, msg: error, stdout, stderr } );
+        });
+      }catch(e){
+        console.error(' Shell.async Exception: '+e.message);
+        resolve( {code: 500, msg:e.message, stdout: null, stderr: null } );
+      }
+    })
   },
 }
 
