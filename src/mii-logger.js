@@ -571,10 +571,10 @@ console.sleep = async( msec )=>{
   });
 }
 
-console.beep = ( times=1, delay=200 ) => {
+console.beep = async( times=1, delay=200 ) => {
   for( let i=0; i<times; i++ ){
     process.stdout.write('\x07');
-    console.sleep( delay );
+    await console.sleep( delay );
   }
 }
 
