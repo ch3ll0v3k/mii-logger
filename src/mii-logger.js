@@ -14,6 +14,8 @@ const _path = require('path');
 const _crypto = require('crypto');
 
 let allowPrint = true;
+let _logTime = true;
+
 let gray = "\033[01;30m";
 let red = "\033[01;31m";
 let green = "\033[01;32m";
@@ -206,6 +208,10 @@ function processArgs( args ){
 
 }
 
+console.logTime = ( val )=>{
+  _logTime = (val);
+}
+
 const logLine = ' ----  ----  ----  ----  ----  ----  ----  ----  ---- ';
 console.line = function(){
   if( !allowPrint ) return;
@@ -215,55 +221,64 @@ console.line = function(){
 console.log = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_log( l_white+getlLogDate()+endl+'[L] : '+white+getFuncArg( args )+endl );
+  let pre = _logTime ? l_white+getlLogDate()+endl+'[L] : ' : '';
+  console_log( pre+white+getFuncArg( args )+endl );
 }
 
 console.info = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_info( l_white+getlLogDate()+endl+'[I] : '+blue+getFuncArg( args )+endl );
+  let pre = _logTime ? l_white+getlLogDate()+endl+'[I] : ' : '';
+  console_log( pre+blue+getFuncArg( args )+endl );
 }
 
 console.info2 = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_info( l_white+getlLogDate()+endl+'[I] : '+l_blue2+getFuncArg( args )+endl );
+  let pre = _logTime ? l_white+getlLogDate()+endl+'[I] : ' : '';
+  console_log( pre+l_blue2+getFuncArg( args )+endl );
 }
 
 console.ok = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_log( l_white+getlLogDate()+endl+'[O] : '+green+getFuncArg( args )+endl );
+  let pre = _logTime ? l_white+getlLogDate()+endl+'[O] : ' : '';
+  console_log( pre+green+getFuncArg( args )+endl );
 }
 
 console.warn = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_warn( l_white+getlLogDate()+endl+'[W] : '+yellow+getFuncArg( args )+endl );
+  let pre = _logTime ? l_white+getlLogDate()+endl+'[W] : ' : '';
+  console_log( pre+yellow+getFuncArg( args )+endl );
 }
 
 console.error = function(){
   // if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_error( l_white+getlLogDate()+endl+'[E] : '+red+getFuncArg( args )+endl );
+  let pre = _logTime ? l_white+getlLogDate()+endl+'[E] : ' : '';
+  console_log( pre+red+getFuncArg( args )+endl );
 }
 
 console.debug = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_info( l_white+getlLogDate()+endl+'[D] : '+purple+getFuncArg( args )+endl );
+  let pre = _logTime ? l_white+getlLogDate()+endl+'[D] : ' : '';
+  console_log( pre+purple+getFuncArg( args )+endl );
 }
 
 console.nocol = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_info( getlLogDate()+'[D] : '+getFuncArg( args ) );
+  let pre = _logTime ? getlLogDate()+'[N] : ' : '';
+  console_log( pre+getFuncArg( args ) );
 }
 
 console.p = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  console_info( getlLogDate()+'[D] : '+getFuncArg( args ) );
+  let pre = _logTime ? l_white+getlLogDate()+endl+'[P] : ' : '';
+  console_log( pre+getFuncArg( args ) );
 }
 
 console.watch = function(){

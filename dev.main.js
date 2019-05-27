@@ -1,4 +1,5 @@
 const logger = require('./src/mii-logger.js');
+console.logTime( true );
 
 // console.mute();
 

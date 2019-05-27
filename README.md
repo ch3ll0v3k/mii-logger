@@ -383,3 +383,18 @@ console.json({ fileInfo });
 
 [![detected-errro](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/execution-duration.png)]
 
+
+##### Disable && Enable log-time
+```javascript
+const logger = require('mii-logger.js');
+
+console.logTime( false );
+console.log(' No Time ... ');
+
+console.logTime( true );
+console.log(' With Time ... ');
+
+```
+
+[![detected-errro](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/time-settings.png)]
+
