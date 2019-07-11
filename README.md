@@ -398,3 +398,14 @@ console.log(' With Time ... ');
 
 [![detected-errro](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/time-settings.png)]
 
+
+##### Disable && Enable log-color
+```javascript
+const logger = require('mii-logger.js');
+
+console.logColor( false );
+console.log(' no color ... ');
+
+console.logColor( true );
+console.log(' colored ... ');
+
