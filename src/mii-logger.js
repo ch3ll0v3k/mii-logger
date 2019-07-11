@@ -15,6 +15,7 @@ const _crypto = require('crypto');
 
 let allowPrint = true;
 let _logTime = true;
+let _logColor = true;
 
 let gray = "\033[01;30m";
 let red = "\033[01;31m";
@@ -212,59 +213,118 @@ console.logTime = ( val )=>{
   _logTime = (val);
 }
 
+console.logColor = ( val )=>{
+  _logColor = (val);
+}
+
 const logLine = ' ----  ----  ----  ----  ----  ----  ----  ----  ---- ';
 console.line = function(){
   if( !allowPrint ) return;
-  console.log( l_white+logLine+endl );
+  if( _logColor ){
+    console.log( l_white+logLine+endl );
+  }else{
+    console.log( logLine );
+  }
 }
 
 console.log = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  let pre = _logTime ? l_white+getlLogDate()+endl+'[L] : ' : '';
-  console_log( pre+white+getFuncArg( args )+endl );
+
+  if( _logColor ){
+    let pre = _logTime ? l_white+getlLogDate()+endl+'[L] : ' : '';
+    console_log( pre+l_white+getFuncArg( args )+endl );
+  }else{
+    let pre = _logTime ? getlLogDate()+'[L] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }
+
 }
 
 console.info = function(){
   if( !allowPrint ) return;
+
   let args = processArgs( arguments );
-  let pre = _logTime ? l_white+getlLogDate()+endl+'[I] : ' : '';
-  console_log( pre+blue+getFuncArg( args )+endl );
+
+  if( _logColor ){
+    let pre = _logTime ? l_white+getlLogDate()+_endl+'[I] : ' : '';
+    console_log( pre+blue+getFuncArg( args )+_endl );
+  }else{
+    let pre = _logTime ? getlLogDate()+'[I] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }
+
 }
 
 console.info2 = function(){
   if( !allowPrint ) return;
+
   let args = processArgs( arguments );
-  let pre = _logTime ? l_white+getlLogDate()+endl+'[I] : ' : '';
-  console_log( pre+l_blue2+getFuncArg( args )+endl );
+
+  if( _logColor ){
+    let pre = _logTime ? l_white+getlLogDate()+endl+'[I] : ' : '';
+    console_log( pre+l_blue2+getFuncArg( args )+endl );
+  }else{
+    let pre = _logTime ? getlLogDate()+'[I] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }
+
 }
 
 console.ok = function(){
   if( !allowPrint ) return;
+
   let args = processArgs( arguments );
-  let pre = _logTime ? l_white+getlLogDate()+endl+'[O] : ' : '';
-  console_log( pre+green+getFuncArg( args )+endl );
+  if( _logColor ){
+    let pre = _logTime ? l_white+getlLogDate()+endl+'[O] : ' : '';
+    console_log( pre+green+getFuncArg( args )+endl );
+  }else{
+    let pre = _logTime ? getlLogDate()+'[O] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }
+
 }
 
 console.warn = function(){
   if( !allowPrint ) return;
+
   let args = processArgs( arguments );
-  let pre = _logTime ? l_white+getlLogDate()+endl+'[W] : ' : '';
-  console_log( pre+yellow+getFuncArg( args )+endl );
+
+  if( _logColor ){
+    let pre = _logTime ? l_white+getlLogDate()+endl+'[W] : ' : '';
+    console_log( pre+yellow+getFuncArg( args )+endl );
+  }else{
+    let pre = _logTime ? getlLogDate()+'[W] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }
+
 }
 
 console.error = function(){
-  // if( !allowPrint ) return;
+
   let args = processArgs( arguments );
-  let pre = _logTime ? l_white+getlLogDate()+endl+'[E] : ' : '';
-  console_log( pre+red+getFuncArg( args )+endl );
+
+  if( _logColor ){
+    let pre = _logTime ? l_white+getlLogDate()+endl+'[E] : ' : '';
+    console_log( pre+red+getFuncArg( args )+endl );
+  }else{
+    let pre = _logTime ? getlLogDate()+'[E] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }
+
 }
 
 console.debug = function(){
   if( !allowPrint ) return;
   let args = processArgs( arguments );
-  let pre = _logTime ? l_white+getlLogDate()+endl+'[D] : ' : '';
-  console_log( pre+purple+getFuncArg( args )+endl );
+
+  if( _logColor ){
+    let pre = _logTime ? l_white+getlLogDate()+endl+'[D] : ' : '';
+    console_log( pre+purple+getFuncArg( args )+endl );
+  }else{
+    let pre = _logTime ? getlLogDate()+'[D] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }
 }
 
 console.nocol = function(){
@@ -276,19 +336,35 @@ console.nocol = function(){
 
 console.p = function(){
   if( !allowPrint ) return;
+
   let args = processArgs( arguments );
-  let pre = _logTime ? l_white+getlLogDate()+endl+'[P] : ' : '';
-  console_log( pre+getFuncArg( args ) );
+  if( _logColor ){
+    let pre = _logTime ? l_white+getlLogDate()+endl+'[P] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }else{
+    let pre = _logTime ? getlLogDate()+'[P] : ' : '';
+    console_log( pre+getFuncArg( args ) );
+  }
+
 }
 
 console.watch = function(){
   if( !allowPrint ) return;
-  console_info( purple+getlLogDate()+endl+'[H] : '+purple+getFuncArg( arguments )+endl );
+  if( _logColor ){
+    console_info( purple+getlLogDate()+endl+'[H] : '+purple+getFuncArg( arguments )+endl );
+  }else{
+    console_info( getlLogDate()+'[H] : '+getFuncArg( arguments ) );
+  }
 }
 
 console.force = function(){ // FORCE STDOUT
   // if( !allowPrint ) return;
-  console_info( l_white+getlLogDate()+endl+'[H] : '+green+getFuncArg( arguments )+endl );
+
+  if( _logColor ){
+    console_info( l_white+getlLogDate()+endl+'[H] : '+green+getFuncArg( arguments )+endl );
+  }else{
+    console_info( getlLogDate()+'[H] : '+getFuncArg( arguments ) );
+  }
 }
 
 console.json = function( obj, format=true, indent=2, lineByLine=true ) {
@@ -330,7 +406,7 @@ console.printObjectTree = function( mObj, maxDepth=7 ) {
 
   try{
 
-    console.log(' #createObjectTree');
+    // getlLogDate()'[H] :.log(' #createObjectTree');
     let currDepth = -1;
 
     function _getType( mObj ){
