@@ -35,7 +35,7 @@ let l_blue = "\033[00;34m";
 let l_purple = "\033[00;35m";
 let l_blue2 = "\033[00;36m";
 let l_white = "\033[00;37m";
-let l_endl = "\033[0m";
+let _endl = "\033[0m";
 
 // NO_COLOUR="\[\033[0m\]"
 // LIGHT_WHITE="\[\033[1;37m\]"
@@ -518,6 +518,17 @@ console.writeFileSync = function( path, data, encoding='utf-8' ){
     return false;
   }
 
+};
+
+console.appendFileSync = function( path, data ){
+  try{ 
+    while( path.replace(/\/\//gi,'/') != path )
+      path = path.replace(/\/\//gi,'/');
+    return _fs.appendFileSync( path, data );
+  }catch( e ){
+    console.error(' console.appendFileSync: ['+path+'] Exception: '+e.message);
+    return false;
+  }
 };
 
 console.readFileSync = function( path, encoding='utf-8' ){

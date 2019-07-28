@@ -333,7 +333,7 @@ console.json({ fileInfo });
 
 ```
 
-#### READ/WRITE File
+#### READ/WRITE/APPEND File
 
 ```javascript
 
@@ -342,6 +342,9 @@ console.json({ fileInfo });
 
   // WRITE File
   console.writeFileSync( 'my-file.txt', 'some text data or json' );
+
+  // APPEND File
+  console.appendFileSync( 'my-file.txt', 'some text data or json'+"\n" );
 
   // optional
   console.writeFileSync( 'my-file.txt', 'some text data or json', encoding='utf-8' );
