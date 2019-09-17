@@ -97,22 +97,27 @@ console.logTime( true );
 // console.json({hashAllFiles});
 
 
-console.line();
-console.log( ' #console.log' );
-console.info( ' #console.info' );
-console.info2( ' #console.info2' );
-console.ok( ' #console.ok' );
-console.warn( ' #console.warn' );
-console.error( ' #console.error' );
-console.debug( ' #console.debug' );
-console.nocol( ' #console.nocol' );
-console.p( ' #console.p' );
-console.watch( ' #console.watch' );
-console.force( ' #console.force' );
-console.json( {key: '#console.json'} );
+// console.line();
+// console.log( ' #console.log' );
+// console.info( ' #console.info' );
+// console.info2( ' #console.info2' );
+// console.ok( ' #console.ok' );
+// console.warn( ' #console.warn' );
+// console.error( ' #console.error' );
+// console.debug( ' #console.debug' );
+// console.nocol( ' #console.nocol' );
+// console.p( ' #console.p' );
+// console.watch( ' #console.watch' );
+// console.force( ' #console.force' );
+// console.json( {key: '#console.json'} );
+// return;
+
+const Obj = { success: true, message: 'Some message' };
+console.ok({ message: Obj.message });
+
+console.ok( new Error('Some Error') );
 
 
-return;
 // let red = console.R(' red ');
 // let green = console.G(' green ');
 // let blue = console.B(' blue ');

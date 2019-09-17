@@ -183,11 +183,12 @@ function getlLogDate(){
 function processArgs( args ){
 
   try{
-
     let res = [];
 
     for( let i in args ){
-      if( args[ i ] && typeof args[ i ] !== "undefined" && args[ i ].message && args[ i ].message !== "undefined" ){
+
+      // if( args[ i ] && typeof args[ i ] !== "undefined" && args[ i ].message && args[ i ].message !== "undefined" ){
+      if( args[ i ] instanceof Error ){
 
         console_log( l_white+getlLogDate()+endl+'[*] : '+R(' #Exception: '+args[ i ].message));
         let stack = args[ i ].stack.split("\n");
@@ -514,7 +515,7 @@ console.writeFileSync = function( path, data, encoding='utf-8' ){
     return _fs.writeFileSync( path, data, encoding );
 
   }catch( e ){
-    console.error(' console.readFileSync: ['+path+'] Exception: '+e.message);
+    console.error(' console.writeFileSync: ['+path+'] Exception: '+e.message);
     return false;
   }
 
