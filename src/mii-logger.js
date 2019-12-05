@@ -706,7 +706,7 @@ console.deepClone = ( data )=>{
         const isArray = Array.isArray( data[ i ] );
         if( isArray || isObject ){
           // foundIndexes = true;
-          res[ i ] = deepClone( data[ i ] );
+          res[ i ] = console.deepClone( data[ i ] );
         }else{
           res[ i ] = data[ i ];
         }
@@ -719,7 +719,7 @@ console.deepClone = ( data )=>{
         const isArray = Array.isArray( data[ key ] );
         if( isArray || isObject ){
           // foundKeys = true;
-          res[ key ] = deepClone( data[ key ] );
+          res[ key ] = console.deepClone( data[ key ] );
         }else{
           res[ key ] = data[ key ];
         }
