@@ -653,12 +653,15 @@ console.shell = {
 
 console.createDir = ( path, mode ) => {
   try{ 
-    return console.shell.sync(' mkdir -p '+console.getAbsPath(path) );
+    console.shell.sync(' mkdir -p '+console.getAbsPath(path) );
+    return true;
   }catch( e ){
     console.error(' Shell.sync Exception: '+e.message);
     return false;
   }
 };
+
+console.mkdir = console.createDir;
 
 // --------------------------------------------------------------------
 console.sleep = async( msec )=>{
@@ -682,6 +685,57 @@ console.beep = async( times=1, delay=200 ) => {
 }
 
 // --------------------------------------------------------------------
+console.deepClone = ( data )=>{
+
+  try{
+
+    if( !data ) return data;
+
+    let res = Array.isArray( data ) ? [] : typeof data === 'object' ? {} : false;
+    if( !res ){
+      console.log(` res == false`);
+      return data;
+    }
+
+    // let foundIndexes = false;
+    // let foundKeys = false;
+
+    if( Array.isArray( data ) ){
+      for( let i=0; i<data.length; i++ ){
+        const isObject = typeof data[ i ] === 'object';
+        const isArray = Array.isArray( data[ i ] );
+        if( isArray || isObject ){
+          // foundIndexes = true;
+          res[ i ] = deepClone( data[ i ] );
+        }else{
+          res[ i ] = data[ i ];
+        }
+      }
+    }
+
+    if( typeof data === 'object' && !Array.isArray( data ) ){
+      for( const key of Object.keys(data) ){
+        const isObject = typeof data[ key ] === 'object';
+        const isArray = Array.isArray( data[ key ] );
+        if( isArray || isObject ){
+          // foundKeys = true;
+          res[ key ] = deepClone( data[ key ] );
+        }else{
+          res[ key ] = data[ key ];
+        }
+      }
+    }
+
+    return res;
+  }catch(e){
+    console.error(e);
+    console.log( { data } );
+    JSON.parse( JSON.stringify(data) );
+  }
+
+}
+
+// --------------------------------------------------------------------
 // console argv
 
 console.getArg = ( name ) => {
@@ -696,7 +750,6 @@ console.getArg = ( name ) => {
 }
 
 const timers_t = {};
-
 console.TS = (lable)=>{ timers_t[ lable ] = Date.now(); return timers_t[ lable ]; }
 console.TE = (lable)=>{ const res = Date.now() - timers_t[ lable ]; delete timers_t[ lable ];  return res; }
 console.F = (val)=>{ return ((+val).toFixed(5)); };

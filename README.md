@@ -61,6 +61,24 @@ console.unMute(); // unMute all output
 [![mute-unmute](https://raw.githubusercontent.com/ch3ll0v3k/mii-logger/master/git-imgs/mute-unmute.png)]
 
 -----------------------------------------------------------------------
+```javascript
+
+const mObj = {
+  user: {
+    email: '****',
+    data: { age: 124 },
+  }
+};
+
+const newMObj = console.deepClone(mObj);
+
+newMObj.user.data.age = 666;
+
+console.log( mObj.user.data.age ); // >>> 124
+console.log( newMObj.user.data.age ); // >>> 666
+
+```
+-----------------------------------------------------------------------
 
 ```javascript
 
