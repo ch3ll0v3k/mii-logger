@@ -2,17 +2,17 @@
 
 const logger = require('./src/mii-logger.js');
 
-const package = console.jsonFromFile( './package.json' )
-const new_version = package.version.split('.').map(( v, index, data )=>{
+const json_package = console.jsonFromFile( './package.json' )
+const new_version = json_package.version.split('.').map(( v, index, data )=>{
   return index == 2 ? ( (+v)+1 ) : v;
 });
 
-const old_version = package.version;
-package.version = new_version.join('.');
-// console.json({old_version, new_version: package.version})
+const old_version = json_package.version;
+json_package.version = new_version.join('.');
+// console.json({old_version, new_version: json_package.version})
 
-console.log( ' #version: ['+old_version+'] => ['+package.version+']' );
-console.jsonToFile( './package.json', package, true);
+console.log( ' #version: ['+old_version+'] => ['+json_package.version+']' );
+console.jsonToFile( './package.json', json_package, true);
 
 // return;
 const postCmds = [

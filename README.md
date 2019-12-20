@@ -181,7 +181,24 @@ console.json( testObject, true, 2, false ); // format, 2, not-line-by-line
 
 ```
 -----------------------------------------------------------------------
+### getting JSON;
 
+```javascript
+const testObject = {
+  name: 'Tom',
+  age: 123,
+  myArr: [0,0,0,0,0],
+  myObj: { A:{ B:{ C:{} } } },
+};
+
+
+// Object to JSON (format?), (defaullt: false);
+// console.toJson( myObject, format=false, spaces=2 );
+
+console.toJson( testObject ); // returns json(string) Object;
+```
+
+-----------------------------------------------------------------------
 ### Hash text && files
 
 ```javascript

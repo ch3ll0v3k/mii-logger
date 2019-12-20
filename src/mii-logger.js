@@ -387,6 +387,22 @@ console.json = function( obj, format=true, indent=2, lineByLine=true ) {
 
 };
 
+console.toJson = function( obj, format=false, indent=2 ) {
+
+  try{ 
+    if( format ){
+      let res = typeof obj === 'object' ? JSON.stringify( obj, null, indent ) : obj;
+      return res;
+    }else{
+      let res = typeof obj === 'object' ? JSON.stringify( obj ) : obj;
+      return res;
+    }
+  }catch( e ){
+    return console.toJson({ method:'console.toJson', error: e.message});
+  }
+
+};
+
 console.mute = function(){
   console.warn(' #logger: is disabled');
   allowPrint = false;
