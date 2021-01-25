@@ -1,5 +1,9 @@
 // TODO: Create NPM Repo => 
 
+// 'use strict';
+
+const strict = ( function () { return !!!this } ) ()
+
 if( console.__MII_LOGGER__ ){
   // Already Importen
   return true;
@@ -90,6 +94,46 @@ const console_warn  = console.warn;
 const console_info  = console.info;
 const console_log   = console.log;
 const console_table = console.table;
+
+// --------------------------------------------------------------------
+console.U = {
+  s: { // Shade characters
+    s0: '░', // :U+2591 (alt-09617) LIGHT SHADE
+    s1: '▒', // :U+2592 (alt-09618) MEDIUM SHADE
+    s2: '▓', // :U+2593 (alt-09619) DARK SHADE
+  },
+  b:{ // Block elements
+    upper_half_block : '▀', // :U+2580 (alt-09600) UPPER HALF BLOCK
+    lower_half_block : '▄', // :U+2584 (alt-09604) LOWER HALF BLOCK
+    left_half_block : '▌', // :U+258C (alt-09612) LEFT HALF BLOCK
+    right_half_block : '▐', // :U+2590 (alt-09616) RIGHT HALF BLOCK
+    solid_block : '█', // :U+2588 (alt-09608) FULL BLOCK = solid
+
+    v0: '▁', //:U+2581 (alt-09601) LOWER ONE EIGHTH BLOCK
+    v1: '▂', //:U+2582 (alt-09602) LOWER ONE QUARTER BLOCK
+    v2: '▃', //:U+2583 (alt-09603) LOWER THREE EIGHTHS BLOCK
+    v3: '▄', //:U+2584 (alt-09604) ***
+    v4: '▅', //:U+2585 (alt-09605) LOWER FIVE EIGHTHS BLOCK
+    v5: '▆', //:U+2586 (alt-09606) LOWER THREE QUARTERS BLOCK
+    v6: '▇', //:U+2587 (alt-09607) LOWER SEVEN EIGHTHS BLOCK
+    v7: '█', // :U+2588 (alt-09608) FULL BLOCK = solid
+
+    h0: '▏', // :U+258F (alt-09615) LEFT ONE EIGHTH BLOCK
+    h1: '▎', // :U+258E (alt-09614) LEFT ONE QUARTER BLOCK
+    h2: '▍', // :U+258D (alt-09613) LEFT THREE EIGHTHS BLOCK
+    h3: '▌', // :U+258C (alt-09612) ***
+    h4: '▋', // :U+258B (alt-09611) LEFT FIVE EIGHTHS BLOCK
+    h5: '▊', // :U+258A (alt-09610) LEFT THREE QUARTERS BLOCK
+    h6: '▉', // :U+2589 (alt-09609) LEFT SEVEN EIGHTHS BLOCK
+    h7: '█', // :U+2588 (alt-09608) FULL BLOCK = solid
+  },
+}
+
+
+
+
+
+
 
 // --------------------------------------------------------------------
 // Override below
@@ -486,7 +530,9 @@ console.getFileInfo = function( path ){
 
 console.isFile = function( path ){
   const info = console.getFileInfo( path );
-  return info && info.isFile();
+  // console.json({info});
+  return info && !info.isDirectory();
+  // return console.isFile => [ info &&  => will return wrong result, if file (is-unix-socket) =>  info.isFile() ];
 };
 
 console.isDir = function( path ){
@@ -640,44 +686,111 @@ console.shell = {
 
   sync: function( cmd, options={} ){
     try{
-      const defOptions = {}; // {stdio:[0,1,2]};
+      const defOptions = { ...(options||{}) }; // {stdio:[0,1,2]};
       const res = (''+_chi.execSync( cmd, defOptions ));
       // console.log({shell: res});
       return res;
     }catch(e){
-      console.error(' Shell.sync Exception: '+e.message);
+      console.error(` #console.shell.sync: ${e.message}`);
       return false;
+
     }
   },
   async: async ( cmd )=>{
     return new Promise( async(resolve, reject)=>{   
       try{
         _chi.exec( cmd, (error, stdout, stderr)=>{
-          if( !error ){
-            resolve( {code: 200, msg:'OK', data: stdout, stderr } );
+          if( error ){
+            const message = error.message || error;
+            resolve( {success:false, message, stdout, stderr } );
             return;
           }
-          resolve( {code: 500, msg: error, stdout, stderr } );
+
+          resolve( {success:true, message: 'OK', data: stdout, stderr } );
+
         });
       }catch(e){
-        console.error(' Shell.async Exception: '+e.message);
-        resolve( {code: 500, msg:e.message, stdout: null, stderr: null } );
+        console.error(` #console.shell.async: ${e.message}`);
+        resolve( {success:false, message: e.message, stdout: null, stderr: null } );
       }
     })
   },
 }
 
-console.createDir = ( path, mode ) => {
+console.mkdir = ( path, mode ) => {
   try{ 
     console.shell.sync(' mkdir -p '+console.getAbsPath(path) );
     return true;
   }catch( e ){
-    console.error(' Shell.sync Exception: '+e.message);
+    console.error(' #console.mkdir: '+e.message);
     return false;
   }
 };
 
-console.mkdir = console.createDir;
+console.createDir = console.mkdir;
+
+// --------------------------------------------------------------------
+// [STDOUT]
+
+console.clearLine = ()=>{
+  try{
+    // const C_LINE = '\x1b[1A'+'\x1b[2K'+'\x1b[1A';
+    const C_LINE = '\x1b[1A'+'\x1b[2K'; //+'\x1b[1A';
+    process.stdout.write( C_LINE );
+  }catch(e){
+    console.warn(` #console:clearLine: ${e.message}`);
+  }
+}
+
+console.getWidth = ()=>{
+  try{
+    return process.stdout.columns;
+  }catch(e){
+    console.warn(` #console:getWidth: ${e.message}`);
+    return 0;
+  }
+}
+console.getHeight = ()=>{
+  try{
+    return process.stdout.rows;
+  }catch(e){
+    console.warn(` #console:getHeight: ${e.message}`);
+    return 0;
+  }
+}
+
+console.getSize = ()=>{
+  return {
+    w: console.getWidth(),
+    h: console.getHeight(),
+  }
+}
+
+console.lineUp = ()=>{
+  try{
+    // const C_LINE = '\x1b[1A'+'\x1b[2K'+'\x1b[1A';
+    const C_LINE = '\x1b[1A'; //+'\x1b[1A';
+    process.stdout.write( C_LINE );
+  }catch(e){
+    console.warn(` #console:lineUp: ${e.message}`);
+  }
+}
+
+console.lineDown = ()=>{
+  try{
+    process.stdout.write('\n');
+  }catch(e){
+    console.warn(` #console:lineDown: ${e.message}`);
+  }
+}
+
+console.write = (data)=>{
+  try{
+    process.stdout.write( data );
+  }catch(e){
+    console.warn(` #console:write: ${e.message}`);
+  }
+}
 
 // --------------------------------------------------------------------
 console.sleep = async( msec )=>{
@@ -697,6 +810,31 @@ console.beep = async( times=1, delay=200 ) => {
   for( let i=0; i<times; i++ ){
     process.stdout.write('\x07');
     await console.sleep( delay );
+  }
+}
+
+// console.isStrictMode = ()=>{
+//   return (typeof this === 'undefined');
+// }
+
+console.isStrictMode = ()=>{
+  return strict;
+}
+
+// console.isStrictMode = ()=>{
+//   try{var o={p:1,p:2};}catch(E){return true;}
+//   return false;
+// }
+
+console.clear = () => {
+  try{
+    if( !console.isStrictMode() ){
+      process.stdout.write('\033c');
+    }else{
+      console.warn(` console.clear: Octal escape sequences are not allowed in strict mode `);
+    }
+  }catch(e){
+    console.warn(` console.clear: ${e.message}`);
   }
 }
 

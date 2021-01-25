@@ -1,5 +1,8 @@
+'use strict';
+
 const logger = require('./src/mii-logger.js');
 console.logTime( true );
+console.clear();
 
 // console.mute();
 
@@ -112,10 +115,9 @@ console.logTime( true );
 // console.json( {key: '#console.json'} );
 // return;
 
-const Obj = { success: true, message: 'Some message' };
-console.ok({ message: Obj.message });
-
-console.ok( new Error('Some Error') );
+// const Obj = { success: true, message: 'Some message' };
+// console.ok({ message: Obj.message });
+// console.ok( new Error('Some Error') );
 
 
 // let red = console.R(' red ');
@@ -154,7 +156,7 @@ console.ok( new Error('Some Error') );
 // console.log( console.B(' In — indigo ') );
 // console.log( console.P(' Vain — violet ') );
 
-
+console.json({ isStrictMode: console.isStrictMode(), });
 
 (async ()=>{
 
